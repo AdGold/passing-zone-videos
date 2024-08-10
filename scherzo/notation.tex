@@ -1,0 +1,63 @@
+\documentclass[20pt]{extarticle}
+% Reduce paper size as increasing font size too much messes with superscript/subscript spacing
+\usepackage[paperheight=5.625in,paperwidth=10in,margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{tikz}
+
+% \newfontfamily\obelix[Path=./]{../common/ObelixProB-cyr.ttf}
+
+% Passing Zone background
+\AddToHook{shipout/background}{%
+    \put (0in,-\paperheight){\includegraphics[width=\paperwidth,height=\paperheight]{../common/trianglify3.png}}%
+}
+
+% Use Passing Zone colours
+\definecolor{passingzone}{RGB}{50,29,91}
+\pagecolor{passingzone}
+\color{white}
+
+\begin{document}
+\thispagestyle{empty} % Remove page numbers
+
+\begin{center} \Huge \bf
+    \fontspec{ObelixPro}
+    \input{title.txt}
+\end{center}
+
+% Increase horizontal and vertical spacing in table
+\setlength{\tabcolsep}{0.5em}
+\renewcommand{\arraystretch}{1.2}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c | c c c c c c c | l}
+        \specialrule{.1em}{.1em}{.1em} 
+        A   & P & P & P & S & S & P & S & $\rightarrow$ B \\
+        B   & P & P & P & {\color{gray}S} & S & P & S & $\rightarrow$ A \\
+        \midrule
+        $M$ & & $S^A_B$ & $I^A_B$ & & $C^B_B$ & & $S^B_B$ & $\rightarrow M$ \\
+        \specialrule{.1em}{.1em}{.1em} 
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\thispagestyle{empty} % Remove page numbers
+
+\begin{center} \Huge \bf
+    \fontspec{ObelixPro}
+    \input{title.txt}
+\end{center}
+
+\begin{center}
+    Juggled @ Coastless Con, G\"ottingen \\
+    July 2024\\
+    ~\\
+    ~\\
+    Adrian, Cameron \& Juli
+\end{center}
+
+\end{document}
