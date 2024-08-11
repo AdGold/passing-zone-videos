@@ -35,13 +35,19 @@ if [ -f audio.mp3 ]; then
     non_fade=$(echo $audio_duration - 2 | bc)
     ffmpeg -i audio.mp3 -t $audio_duration -acodec copy -y trimmed_audio.mp3
     ffmpeg -i trimmed_audio.mp3 -af "afade=t=out:st=$non_fade:d=2" -y final_audio.mp3
+    rm trimmed_audio.mp3
 else
     touch final_audio.mp3
 fi
 
 # Combine using melt
-melt -quiet melt_file:project.melt -consumer avformat:output.mp4 acodec=libmp3lame vcodec=libx264 b=12000k quality=high+ width=1920 height=1080 preset=slow profile=high crf=18
-rm PZ-intro.mp4 credits.png trimmed_audio.mp3 final_audio.mp3
+if [ -f project.melt ]; then
+    MELT="project.melt"
+else
+    MELT="$COMMON/project.melt"
+fi
+melt -quiet melt_file:$MELT -consumer avformat:output.mp4 acodec=libmp3lame vcodec=libx264 b=12000k quality=high+ width=1920 height=1080 preset=slow profile=high crf=18
+rm PZ-intro.mp4 credits.png final_audio.mp3
 mv output.mp4 "$TITLE.mp4"
 mv notation.png "$TITLE - notation.png"
 

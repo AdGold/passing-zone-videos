@@ -22,7 +22,7 @@ final_audio.mp3
 -transition
 mix
 in=0
-out=200
+out=150
 a_track=0
 b_track=1
 
