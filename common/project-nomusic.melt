@@ -17,12 +17,3 @@ length=120
 25
 -mixer
 luma
--track
-final_audio.mp3
--transition
-mix
-in=0
-out=150
-a_track=0
-b_track=1
-
