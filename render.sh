@@ -18,6 +18,7 @@ rm notation.{aux,log,pdf} title.txt
 FONT="$COMMON/ObelixProB-cyr.ttf"
 [[ $TITLE =~ [äöüàèìòùáéíóú] ]] && FONT="$COMMON/bangers.regular.ttf" # Obelix doesn't support accents
 ffmpeg -i $COMMON/PZ-INTRO-without-pattern-name.avi -vf "drawtext=fontfile=$FONT: enable='gte(t,1.5)': text='$TITLE': fontcolor=white: fontsize=80: x=(w-text_w)/2: y=(h-text_h-80) + (text_h+80)*(2.5-min(t\,2.5))" -c:a copy -y PZ-intro.mp4
+ffmpeg -y -i "PZ-intro.mp4" -f image2 -ss 3 -vframes 1 -an "$TITLE - thumbnail.jpg"
 
 # Trim and fade audio.mp3 here because melt needs exact times
 if [ -f audio.mp3 ]; then
