@@ -1,10 +1,12 @@
 #!/bin/bash
 
+COMMON="../common"
 FOLDER="$1"
 PREVIEW=$(test "$2" = "-p" && echo "1")
 cd $FOLDER
 . config
-COMMON="../common"
+# Use title if INTRO_TITLE is not set in config
+INTRO_TITLE=${INTRO_TITLE:-$TITLE}
 
 # Get the notation/credits as a PNGs
 echo $TITLE > title.txt
@@ -16,8 +18,8 @@ rm notation.{aux,log,pdf} title.txt
 
 # Overlay title on intro
 FONT="$COMMON/ObelixProB-cyr.ttf"
-[[ $TITLE =~ [äöüàèìòùáéíóú] ]] && FONT="$COMMON/bangers.regular.ttf" # Obelix doesn't support accents
-ffmpeg -i $COMMON/PZ-INTRO-without-pattern-name.avi -vf "drawtext=fontfile=$FONT: enable='gte(t,1.5)': text='$TITLE': fontcolor=white: fontsize=80: x=(w-text_w)/2: y=(h-text_h-80) + (text_h+80)*(2.5-min(t\,2.5))" -c:a copy -y PZ-intro.mp4
+[[ $INTRO_TITLE =~ [äöüàèìòùáéíóú] ]] && FONT="$COMMON/bangers.regular.ttf" # Obelix doesn't support accents
+ffmpeg -i $COMMON/PZ-INTRO-without-pattern-name.avi -vf "drawtext=fontfile=$FONT: enable='gte(t,1.5)': text='$INTRO_TITLE': fontcolor=white: fontsize=80: x=(w-text_w)/2: y=(h-text_h-80) + (text_h+80)*(2.5-min(t\,2.5))" -c:a copy -y PZ-intro.mp4
 ffmpeg -y -i "PZ-intro.mp4" -f image2 -ss 3 -vframes 1 -an "$TITLE - thumbnail.jpg"
 
 # Trim and fade audio.mp3 here because melt needs exact times

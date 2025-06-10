@@ -22,6 +22,7 @@ git clone https://github.com/AdGold/passing-zone-videos.git
 Create a folder with the following files
 * `config`: config file with the following fields:
   * `TITLE="Title"`: the title of the video
+  * `INTRO_TITLE="Intro Title"` (optional): the title to use in the intro video overlay, defaults to the same as `TITLE`
   * `AUDIO_DURATION=10` (optional): the duration of the audio clip in seconds (defaults to just under the total video duration)
 * `notation.tex`: the notation and credits as a latex document
 * `video.mp4`: the video clip
