@@ -1,0 +1,74 @@
+\documentclass[20pt]{extarticle}
+% Reduce paper size as increasing font size too much messes with superscript/subscript spacing
+\usepackage[paperheight=5.625in,paperwidth=10in,margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{tikz}
+
+% Passing Zone background
+\AddToHook{shipout/background}{%
+    \put (0in,-\paperheight){\includegraphics[width=\paperwidth,height=\paperheight]{../common/trianglify3.png}}%
+}
+
+% Use Passing Zone colours
+\definecolor{passingzone}{RGB}{50,29,91}
+\pagecolor{passingzone}
+\color{white}
+
+\begin{document}
+\thispagestyle{empty} % Remove page numbers
+
+\setmainfont{DejaVu Sans}
+
+\begin{center} \large \bf
+    \fontspec{ObelixPro}
+    \input{title.txt} \\
+    \small
+    (0-club manipulator)
+\end{center}
+
+% Increase horizontal and vertical spacing in table
+\setlength{\tabcolsep}{0.5em}
+\renewcommand{\arraystretch}{1.1}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c | c c c c c c c c c | l}
+        \specialrule{.1em}{.1em}{.1em} 
+        & \tiny{R} & \tiny{L} & \tiny{R} & \tiny{L} & \tiny{R} & \tiny{L} & \tiny{R} & \tiny{L} & \tiny{R} \\
+        A   & 4p & 3 & 5 & 3 & 4p & 3 & 5 & 3 & 4p & $\rightarrow$ B \\
+        & \tiny{L} & \tiny{R} & \tiny{L} & \tiny{R} & \tiny{L} & \tiny{R} & \tiny{L} & \tiny{R} & \tiny{L} \\
+        B   & 3 & 4p & 3 & 3 & 3 & 4p & 3 & 3 & 3 & $\rightarrow$ A \\
+        \midrule
+        $M^0$ & $S^A_B$ & & & $S^B_B$ & $I^A_B$ & & $C^B_B$ & $C^B_B$ & & $\rightarrow M^0$ \\
+        \specialrule{.1em}{.1em}{.1em} 
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\thispagestyle{empty} % Remove page numbers
+
+\begin{center} \huge \bf
+    \fontspec{ObelixPro}
+    \input{title.txt} \\
+    \small
+    (0-club manipulator)
+\end{center}
+
+\begin{center}
+    Juggled @ Passout, Leipzig \\
+    January 2025\\
+    ~\\
+    Adrian, Cameron \& Lukas
+    ~\\
+    ~\\
+    {\tiny
+    Song: Zachz, {Фрози}, Joyful - Boogie \\
+    Music provided by NoCopyrightSounds
+    }
+\end{center}
+
+\end{document}
